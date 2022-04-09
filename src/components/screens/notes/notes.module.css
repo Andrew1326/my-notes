@@ -1,0 +1,19 @@
+#title_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#img {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 0 1.5% 0 1.5%;
+}
+
+#card_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

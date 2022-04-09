@@ -1,0 +1,67 @@
+#card_header, #list_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#create_btn {
+    color: #19A14B;
+    background-color: none;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #19A14B;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120%;
+    margin-bottom: 4px;
+    transition: 0.2s ease-in-out;
+}
+
+#create_btn:hover {
+    cursor: pointer;
+    background-color: #19A14B;
+    border-color: #17c3b2;
+    color: #fef9ef;
+}
+
+.list_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list_check {
+    margin: 0 10px 0 0;
+}
+
+#delete_btn:hover, .list_item:hover {
+    cursor: pointer;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 320px) {
+    #card {
+        min-width: 100%;
+        margin: 1% 0 1% 0;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    #card {
+        min-width: 45%;
+        margin: 0.5% 0 0.5% 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    #card {
+        min-width: 30%;
+    }
+}
