@@ -80,6 +80,7 @@ export const getWeek = () => {
     return week; 
 };
 
+//* date format
 export const formatAMPM = time => {
     const arr = time.split(':');
     var hours = +arr[0];

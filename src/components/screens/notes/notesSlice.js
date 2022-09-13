@@ -27,9 +27,7 @@ const notesSlice = createSlice({
         //* edit note
         editNote: (state, action) => {
 
-            const id = action.payload.noteId;
-            const note = action.payload.note;
-
+            const { id, note } = action.payload;
             const listIncludes = state.notes.map(el => el.name).includes(note);
 
             if (note.length > 0 && !listIncludes) state.notes[id].name = note;
@@ -46,9 +44,8 @@ const notesSlice = createSlice({
         },
         //* onDrop
         onDrop: (state, action) => {
-            
-            const id = action.payload.id;
-            const overElemId = action.payload.overElemId;
+
+            const { id, overElemId } = action.payload;
 
             const draggableElem = state.notes[id];
             const overElem = state.notes[overElemId];
