@@ -67,7 +67,8 @@ const diarySlice = createSlice({
 
         //* update dates
         updateDates: (state, action) => {
-            state.days = state.days.map((el, i) => ({...el, date: action.currentDates[i]}))
+            const { currentDates } = action.payload
+            state.days = state.days.map((el, i) => ({...el, date: currentDates[i]}))
         }
     }
 });

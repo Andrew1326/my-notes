@@ -29,7 +29,7 @@ export default function CreateNote() {
             placeholder='Enter note or task...' 
             />
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%'}}>
-                <Button variant='warning' type='submit'>create note</Button>
+                <Button variant='success' type='submit'>create note</Button>
             </div>
         </Form>
     )

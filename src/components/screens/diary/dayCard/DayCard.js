@@ -81,7 +81,7 @@ export default function DayCard({dayId, data}) {
             </Card.Body>
             {
                 data.notes.length > 1 && <Card.Footer id={styles.footer}>
-                <Button variant='info' onClick={() => dispatch(clearList(dayId))}>clear list</Button>
+                <Button variant='danger' onClick={() => dispatch(clearList(dayId))}>clear list</Button>
                 </Card.Footer>
             }
         </Card>

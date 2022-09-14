@@ -67,7 +67,7 @@ export default function NotesCard() {
             </Card.Body>
             {
                 notes.length > 1 && <Card.Footer id={styles.footer}>
-                <Button variant='info' onClick={() => dispatch(clearList())}>clear list</Button>
+                <Button variant='danger' onClick={() => dispatch(clearList())}>clear list</Button>
             </Card.Footer>
             }
             </>

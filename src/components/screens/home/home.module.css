@@ -26,6 +26,10 @@
 }
 
 @media screen and (min-width: 320px) {
+    #title_container {
+        margin-top: 10%;
+    }
+
     #images_container, #variants_container {
         margin-top: 20%;
     }
@@ -36,6 +40,10 @@
 }
 
 @media screen and (min-width: 481px) {
+    #title_container {
+        margin-top: 5%;
+    }
+
     #images_container, #variants_container {
         margin-top: 10%;
     }
@@ -46,6 +54,10 @@
 }
 
 @media screen and (min-width: 769px) {
+    #title_container {
+        margin-top: 1%;
+    }
+
     #images_container, #variants_container {
         margin-top: 5%;
     }
