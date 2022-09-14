@@ -1,4 +1,4 @@
-# Diary app
+# Notes app
 
 This is an app for creating, editing, deleting notes. It includes simple notes and day planning
 
