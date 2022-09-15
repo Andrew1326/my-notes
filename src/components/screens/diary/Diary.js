@@ -4,7 +4,6 @@ import styles from './diary.module.css';
 import calendarSrc from '../../../images/calendar.png';
 import { useSelector } from 'react-redux';
 import DayCard from './dayCard/DayCard';
-import BackBtn from '../../shared/backBtn/BackBtn'
 
 export default function Diary() {
 
@@ -13,7 +12,6 @@ export default function Diary() {
 
     return (
         <Container fluid>
-            <BackBtn />
             <div id={styles.title_container} data-aos='fade-down-right' data-aos-duration='1200'>
                 <h1>Day planning with diary</h1>
                 <Image id={styles.img} src={calendarSrc} alt='calendar' />
