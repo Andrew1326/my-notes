@@ -71,13 +71,31 @@ export const calcMonth = month => {
 export const getWeek = () => {
     let week = []; 
         
-    // Starting Monday not Sunday
-    current.setDate((current.getDate() - current.getDay() -1));
-    for (var i = 0; i < 7; i++) {
-        week.push(new Date(current)); 
-        current.setDate(current.getDate() +1);
+    const month = current.getMonth();
+    const monthInfo = calcMonth(month)
+
+    const firstDay = new Date(current.setDate(current.getDate() - current.getDay())).getDate()+1;
+    const lastDay = new Date(current.setDate(current.getDate() - current.getDay() + 6)).getDate()+1;
+
+    //* create day
+    const createDay = index => new Date(current.getUTCFullYear(), month, index)
+
+    //* creating dates
+    if ((firstDay+7) > monthInfo.days) {
+        for (let i = firstDay; i <= monthInfo.days; i++) {
+            week.push(createDay(i))
+        }
+        for (let i = 1; i <= lastDay; i++) {
+            week.push(createDay(i))
+        }
+
+    } else {
+        for (let i = firstDay; i <= lastDay; i++) {
+            week.push(createDay(i))
+        }
     }
-    return week; 
+
+    return week
 };
 
 //* date format
