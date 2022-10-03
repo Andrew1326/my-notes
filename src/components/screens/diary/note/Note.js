@@ -8,6 +8,8 @@ import styles from '../../notes/note/note.module.css'
 
 const Note = ({dayId, setEditModalShow, note, index}) => {
 
+    const { time, completed, text } = note
+
     const dispatch = useDispatch()
 
     //* drag start
@@ -33,18 +35,18 @@ const Note = ({dayId, setEditModalShow, note, index}) => {
         <OverlayTrigger
             placement='top'
             delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>{formatAMPM(note.time)}</Tooltip>}
+            overlay={<Tooltip>{time ? formatAMPM(time) : 'without time'}</Tooltip>}
             >
             <div>
             <ListGroup.Item className={styles.list_item} action as='li' data-aos='zoom-in' data-aos-duration='500' draggable onDragStart={e => onDragStart(e, index)} onDragOver={onDragOver} onDrop={e => onElemDrop(e, index)}>
             <Form.Check 
-            checked={note.completed}
+            checked={completed}
             onChange={() => dispatch(completeNote({dayId, noteId: index}))}
             className={styles.list_check} 
             type='checkbox' 
             isValid 
             />
-            <span style={{textDecoration: note.completed ? 'line-through' : 'none'}} onClick={() => editNote(index)}>{note.note}</span>
+            <span style={{textDecoration: completed ? 'line-through' : 'none'}} onClick={() => editNote(index)}>{text}</span>
             <div id={styles.delete_btn} onClick={() => dispatch(deleteNote({dayId, noteId: index}))}><Cross /></div>
             </ListGroup.Item>
             </div>

@@ -7,6 +7,8 @@ import styles from './note.module.css'
 
 const Note = ({note, index, setNoteId, setShow}) => {
 
+    const { text, completed } = note
+
     const dispatch = useDispatch()
 
     //* drag start
@@ -30,13 +32,13 @@ const Note = ({note, index, setNoteId, setShow}) => {
     return (
         <ListGroup.Item data-aos='zoom-in' data-aos-duration='500' draggable onDragStart={e => onDragStart(e, index)} onDragOver={handleOnDragOver} onDrop={e => onElemDrop(e, index)} className={styles.list_item} action as='li'>
             <Form.Check 
-            checked={note.completed}
+            checked={completed}
             onChange={() => dispatch(completeNote(index))}
             className={styles.list_check} 
             type='checkbox' 
             isValid 
             />
-            <span style={{textDecoration: note.completed ? 'line-through' : 'none'}} onClick={() => editNote(index)}>{note.name}</span>
+            <span style={{textDecoration: completed ? 'line-through' : 'none'}} onClick={() => editNote(index)}>{text}</span>
             <div id={styles.delete_btn} onClick={() => dispatch(deleteNote(index))}><Cross /></div>
         </ListGroup.Item>
     )

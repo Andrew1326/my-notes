@@ -13,7 +13,7 @@ export default function EditModal({show, setShow, noteId}) {
 
     //* submit
     const onSubmit = data => {
-        dispatch(editNote({note: data.note, noteId}));
+        dispatch(editNote({text: data.text, id: noteId}));
         setShow(false);
     };
 
@@ -30,7 +30,7 @@ export default function EditModal({show, setShow, noteId}) {
                 style={{textAlign: 'center'}}
                 type='text'
                 placeholder='Enter you changes here...'
-                {...register('note')}
+                {...register('text')}
                 />
             </Modal.Body>
             <Modal.Footer>

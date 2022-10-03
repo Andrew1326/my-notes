@@ -21,40 +21,46 @@ const diarySlice = createSlice({
     reducers: {
         //* create note
         createNote: (state, action) => {
-            const { note, time, dayId } = action.payload;
+            const { text, time, dayId } = action.payload;
             const selectedDayId = state.selectedDayId;
+            const notes = state.days[selectedDayId].notes
 
-            const listIncludes = state.days[selectedDayId].notes.map(el => el.note).includes(note);
+            const listIncludesText = notes.map(el => el.text).includes(text);
+            const listIncludesTime = notes.map(el => el.time).includes(time);
 
-            (!listIncludes && note.length > 0) && state.days[dayId].notes.push({note, time, completed: false});
+            ((!listIncludesText  || (listIncludesText && !listIncludesTime)) && text.length > 0) && state.days[dayId].notes.push({text, time, completed: false});
         },
+
         //* complete note 
         completeNote: (state, action) => {
             const { dayId, noteId } = action.payload;
             state.days[dayId].notes[noteId].completed = !state.days[dayId].notes[noteId].completed;
         },
+
         //* edit note
         editNote: (state, action) => {
-            const { dayId, noteId, note, time } = action.payload;
-            const listIncludesNote = state.days[dayId].notes.map(el => el.note).includes(note);
+            const { dayId, noteId, text, time } = action.payload;
+            const listIncludesNote = state.days[dayId].notes.map(el => el.text).includes(text);
 
-            if (note.length > 0 && !listIncludesNote) {
+            if (text.length > 0 && !listIncludesNote) {
 
                 const completed = state.days[dayId].notes[noteId].completed;
-                state.days[dayId].notes[noteId] = {note, time, completed};
+                state.days[dayId].notes[noteId] = {text, time, completed};
             };
         },
+
         //* delete note
         deleteNote: (state, action) => {
             const { dayId, noteId } = action.payload;
             state.days[dayId].notes = state.days[dayId].notes.filter((_, i) => i !== noteId);
         },
+
         //* clear list
         clearList: (state, action) => {
-            
             const id = action.payload;
             state.days[id].notes = [];
         },
+
         //* onDrop
         onDrop: (state, action) => {
             const { id, overElemId, dayId } = action.payload;

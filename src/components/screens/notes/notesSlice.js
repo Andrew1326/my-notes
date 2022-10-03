@@ -13,9 +13,9 @@ const notesSlice = createSlice({
         //* create note
         createNote: (state, action) => {
             const note = action.payload;
-            const listIncludes = state.notes.map(el => el.name).includes(note);
+            const listIncludes = state.notes.map(el => el.text).includes(note);
 
-            (!listIncludes && note.length > 0) && state.notes.push({name: note, completed: false});
+            (!listIncludes && note.length > 0) && state.notes.push({text: note, completed: false});
         },
 
         //* complete note 
@@ -26,10 +26,10 @@ const notesSlice = createSlice({
 
         //* edit note
         editNote: (state, action) => {
-            const { id, note } = action.payload;
-            const listIncludes = state.notes.map(el => el.name).includes(note);
+            const { id, text } = action.payload;
+            const listIncludes = state.notes.map(el => el.text).includes(text);
 
-            if (note.length > 0 && !listIncludes) state.notes[id].name = note;
+            if (text.length > 0 && !listIncludes) state.notes[id].text = text;
         },
 
         //* delete note

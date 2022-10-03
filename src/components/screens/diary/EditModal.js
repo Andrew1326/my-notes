@@ -14,9 +14,9 @@ export default function EditModal({show, setShow, dayId, noteId}) {
 
     //* submit
     const onSubmit = data => {
-        const { note, time } = data
+        const { text, time } = data
 
-        dispatch(editNote({dayId, noteId, note, time}));
+        dispatch(editNote({dayId, noteId, text, time}));
         setShow(false);
     };
 
@@ -42,7 +42,7 @@ export default function EditModal({show, setShow, dayId, noteId}) {
                     style={{textAlign: 'center'}}
                     type='text'
                     placeholder='Enter you note here...'
-                    {...register('note')}
+                    {...register('text')}
                     />
                     </Col>
                 </Row>

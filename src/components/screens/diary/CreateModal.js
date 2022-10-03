@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 export default function CreateModal({show, setShow, dayId}) {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const dispatch = useDispatch()
 
     //* handlers
@@ -14,8 +14,12 @@ export default function CreateModal({show, setShow, dayId}) {
 
     //* submit
     const onSubmit = data => {
-        dispatch(createNote({note: data.note, time: data.time, dayId}));
+        const { text, time } = data
+
+        dispatch(createNote({text, time, dayId}));
         setShow(false);
+
+        reset()
     };
 
     return (
@@ -40,7 +44,7 @@ export default function CreateModal({show, setShow, dayId}) {
                     style={{textAlign: 'center'}}
                     type='text'
                     placeholder='Enter you note here...'
-                    {...register('note')}
+                    {...register('text')}
                     />
                     </Col>
                 </Row>

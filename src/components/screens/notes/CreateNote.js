@@ -1,30 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { createNote } from './notesSlice';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form'
 
 export default function CreateNote() {
 
-    const [note, setNote] = useState('')
-
     const dispatch = useDispatch()
 
-    //* change
-    const handleChange = e => setNote(e.target.value);
+    const { register, handleSubmit, reset } = useForm()
 
     //* submit
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        dispatch(createNote(note));
-        setNote('');
+    const onSubmit = data => {
+        dispatch(createNote(data.text));
+        reset()
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Control 
-            value={note}
-            onChange={handleChange}
+            {...register('text')}
             style={{textAlign: 'center'}} 
             placeholder='Enter note or task...' 
             />
