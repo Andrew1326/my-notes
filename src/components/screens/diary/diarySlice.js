@@ -8,7 +8,11 @@ const createWeek = () => {
 };
 
 //* initial state
-const initialState = {days: createWeek()};
+const initialState = {
+    days: createWeek(),
+    selectedDayId: null,
+    selectedNoteId: null
+};
 
 //* diary slice
 const diarySlice = createSlice({
@@ -17,21 +21,20 @@ const diarySlice = createSlice({
     reducers: {
         //* create note
         createNote: (state, action) => {
-
             const { note, time, dayId } = action.payload;
-            const listIncludes = state.days[dayId].notes.map(el => el.note).includes(note);
+            const selectedDayId = state.selectedDayId;
+
+            const listIncludes = state.days[selectedDayId].notes.map(el => el.note).includes(note);
 
             (!listIncludes && note.length > 0) && state.days[dayId].notes.push({note, time, completed: false});
         },
         //* complete note 
         completeNote: (state, action) => {
-
             const { dayId, noteId } = action.payload;
             state.days[dayId].notes[noteId].completed = !state.days[dayId].notes[noteId].completed;
         },
         //* edit note
         editNote: (state, action) => {
-
             const { dayId, noteId, note, time } = action.payload;
             const listIncludesNote = state.days[dayId].notes.map(el => el.note).includes(note);
 
@@ -43,7 +46,6 @@ const diarySlice = createSlice({
         },
         //* delete note
         deleteNote: (state, action) => {
-
             const { dayId, noteId } = action.payload;
             state.days[dayId].notes = state.days[dayId].notes.filter((_, i) => i !== noteId);
         },
@@ -55,7 +57,6 @@ const diarySlice = createSlice({
         },
         //* onDrop
         onDrop: (state, action) => {
-
             const { id, overElemId, dayId } = action.payload;
 
             const draggableElem = state.days[dayId].notes[id];
@@ -69,9 +70,19 @@ const diarySlice = createSlice({
         updateDates: (state, action) => {
             const { currentDates } = action.payload
             state.days = state.days.map((el, i) => ({...el, date: currentDates[i]}))
+        },
+
+        //* select day
+        selectDay: (state, action) => {
+            state.selectedDayId = action.payload
+        },
+
+        //* select note
+        selectNote: (state, action) => {
+            state.selectedNoteId = action.payload
         }
     }
 });
 
-export const { createNote, completeNote, editNote, deleteNote, clearList, onDrop, updateDates } = diarySlice.actions
+export const { createNote, completeNote, editNote, deleteNote, clearList, onDrop, updateDates, selectDay, selectNote } = diarySlice.actions
 export default diarySlice.reducer

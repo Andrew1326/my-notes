@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, ListGroup } from 'react-bootstrap';
+import { Button, Card, ListGroup } from 'react-bootstrap';
 import styles from './notesCard.module.css';
 import CreateNote from '../CreateNote';
-import { ReactComponent as Cross } from '../../../../images/cross.svg';
-import { completeNote, deleteNote, clearList, onDrop } from '../notesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import EditModal from '../EditModal';
+import Note from '../note/Note';
+import { clearList } from '../notesSlice';
 
 export default function NotesCard() {
 
@@ -16,24 +16,6 @@ export default function NotesCard() {
 
     //* notes
     const notes = useSelector(state => state.notesReducer.notes)
-
-    //* drag start
-    const onDragStart = (e, id) => e.dataTransfer.setData('id', id);
-    
-    //* drop
-    const onElemDrop = (e, overElemId) => {
-        const id = e.dataTransfer.getData('id');
-        dispatch(onDrop({id, overElemId}));
-    };
-
-    //* drag over
-    const handleOnDragOver = e => e.preventDefault();
-
-    //* note editing
-    const editNote = id => {
-        setNoteId(id);
-        setShow(true);
-    };
 
     //* props
     const editModalProps = {show, setShow, noteId};
@@ -51,17 +33,7 @@ export default function NotesCard() {
                 <Card.Body>
                 <ListGroup as='ul'>
                     {
-                        notes.map((el, i) => <ListGroup.Item key={i} data-aos='zoom-in' data-aos-duration='500' draggable onDragStart={e => onDragStart(e, i)} onDragOver={handleOnDragOver} onDrop={e => onElemDrop(e, i)} className={styles.list_item} action as='li'>
-                            <Form.Check 
-                            checked={el.completed}
-                            onChange={() => dispatch(completeNote(i))}
-                            className={styles.list_check} 
-                            type='checkbox' 
-                            isValid 
-                            />
-                            <span style={{textDecoration: el.completed ? 'line-through' : 'none'}} onClick={() => editNote(i)}>{el.name}</span>
-                            <div id={styles.delete_btn} onClick={() => dispatch(deleteNote(i))}><Cross /></div>
-                        </ListGroup.Item>)
+                        notes.map((el, i) => <Note key={i} note={el} index={i} setNoteId={setNoteId} setShow={setShow} />)
                     }
                 </ListGroup>
             </Card.Body>

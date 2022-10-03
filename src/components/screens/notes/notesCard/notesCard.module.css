@@ -2,28 +2,6 @@
     width: 500px;
 }
 
-.list_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.list_item_dragging {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0.25;
-    background: #FFFFFF;
-}
-
-.list_check {
-    margin: 0 10px 0 0;
-}
-
-#delete_btn:hover, .list_item:hover {
-    cursor: pointer;
-}
-
 #footer {
     display: flex;
     justify-content: center;

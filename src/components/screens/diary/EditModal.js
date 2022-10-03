@@ -14,7 +14,9 @@ export default function EditModal({show, setShow, dayId, noteId}) {
 
     //* submit
     const onSubmit = data => {
-        dispatch(editNote({dayId, noteId, note: data.note, time: data.time}));
+        const { note, time } = data
+
+        dispatch(editNote({dayId, noteId, note, time}));
         setShow(false);
     };
 

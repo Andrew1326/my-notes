@@ -1,0 +1,13 @@
+.list_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list_check {
+    margin: 0 10px 0 0;
+}
+
+#delete_btn:hover, .list_item:hover {
+    cursor: pointer;
+}

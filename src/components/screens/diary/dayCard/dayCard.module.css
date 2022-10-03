@@ -22,22 +22,7 @@
 #create_btn:hover {
     cursor: pointer;
     background-color: #19A14B;
-    border-color: #17c3b2;
     color: #fef9ef;
-}
-
-.list_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.list_check {
-    margin: 0 10px 0 0;
-}
-
-#delete_btn:hover, .list_item:hover {
-    cursor: pointer;
 }
 
 #footer {
