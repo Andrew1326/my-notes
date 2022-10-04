@@ -43,9 +43,10 @@ const diarySlice = createSlice({
             const listIncludesNote = state.days[dayId].notes.map(el => el.text).includes(text);
 
             if (text.length > 0 && !listIncludesNote) {
-
                 const completed = state.days[dayId].notes[noteId].completed;
-                state.days[dayId].notes[noteId] = {text, time, completed};
+                const editedNote = state.days[dayId].notes[noteId];
+
+                state.days[dayId].notes[noteId] = {text, time: time ? time : editedNote.time, completed};
             };
         },
 

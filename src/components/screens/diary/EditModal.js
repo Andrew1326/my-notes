@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 export default function EditModal({show, setShow, dayId, noteId}) {
 
-    const { handleSubmit, register } = useForm()
+    const { handleSubmit, register, reset } = useForm()
     const dispatch = useDispatch()
 
     //* handlers
@@ -18,6 +18,8 @@ export default function EditModal({show, setShow, dayId, noteId}) {
 
         dispatch(editNote({dayId, noteId, text, time}));
         setShow(false);
+
+        reset();
     };
 
     return (
